@@ -17,3 +17,33 @@ let myWeek = [{day: 'Monday', activity: 'Schoolwork', category: 'learning', hour
 * What patterns might exist around time of day?
 * I think I tend to do boring stuff in the afternoons; so I predict enjoyment will be higher in the mornings and evenings.
 */
+
+function mostCommon(log, key) {
+    const counts = {};
+    [...new Set(log.map(entry => entry[key]))].forEach(value => {
+        counts[value] = log.filter(entry => entry[key] == value).length;
+    });
+    return Object.keys(counts).filter(key => counts[key] == Math.max(...Object.values(counts)));
+}
+
+const sumKeyValue = (log, key, value) => {
+    return log.filter(entry => entry[key] == value).reduce((sum, entry) => sum + entry.hoursSpent, 0)
+};
+
+function avgEnjoyKey(log, key) {
+    const averages = {};
+    [...new Set(log.map(entry => entry[key]))].forEach(value => {
+        const matches = log.filter(entry => entry[key] == value);
+        averages[value] = matches.reduce((sum, entry) => sum + entry.enjoyment, 0) / matches.length;
+    });
+    return averages;
+}
+
+let key = 'category';
+let value = mostCommon(myWeek, key);
+console.log(`Most common value of ${key}: ${value}\n`);
+console.log(`Total hours logged when ${key} = ${value}: ${sumKeyValue(myWeek, key, value)}\n`);
+
+key = 'timeOfDay';
+console.log(`Average enjoyment level for each value of ${key}: `);
+console.log(avgEnjoyKey(myWeek, key));
