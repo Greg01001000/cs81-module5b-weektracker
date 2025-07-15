@@ -1,4 +1,5 @@
 // CS 81 Module 5 Assignment 5B: My Week in Data, GregH, 7/14/25
+// https://github.com/Greg01001000/cs81-module5b-weektracker
 
 let myWeek = [{day: 'Monday', activity: 'Schoolwork', category: 'learning', hoursSpent: 13, enjoyment: 7, timeOfDay: 'all day'},
     {day: 'Tuesday', activity: 'Shave & shower', category: 'physical', hoursSpent: 3, enjoyment: 4, timeOfDay: 'afternoon'},
@@ -55,3 +56,5 @@ console.log(avgEnjoyKey(myWeek, key));
 console.log('\nActivities which took less time than average and had more enjoyment than average were:');
 console.log(filterByCondition(myWeek, act => 
     act.hoursSpent < avgKey(myWeek, 'hoursSpent') && act.enjoyment > avgKey(myWeek, 'enjoyment')).map(item => item.activity));
+
+// https://github.com/Greg01001000/cs81-module5b-weektracker
